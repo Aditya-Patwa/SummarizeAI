@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "summarizeai"
+version = "0.1.0"
+description = ""
+authors = ["Aditya Patwa <adityapatwa.tech@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.7"
+langchain = "^0.2.7"
+langchain-community = "^0.2.7"
+langchain-huggingface = "^0.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
