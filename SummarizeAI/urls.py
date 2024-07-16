@@ -22,5 +22,6 @@ urlpatterns = [
     path("", include("main.urls")),
     path("api/", include("api.urls")),
     path("dashboard/", include("dashboard.urls")),
-    path("subscription/", include("subscription.urls"))
+    path("subscription/", include("subscription.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]

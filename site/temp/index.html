@@ -8,17 +8,20 @@
 </head>
 
 <body>
-    {{content}}
-    {% csrf_token %}
 
-    <script>
+    {% block content %}
+    {% endblock %}
+
+    <!-- {% csrf_token %} -->
+
+    <!-- <script>
         const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
         fetch("/api/summarize_webpage/", {
             method: "POST", body: "https://google.com", headers: { 'X-CSRFToken': csrftoken },
             
         }).then((res) => res.json()).then(data => console.log(data));
 
-    </script>
+    </script> -->
 </body>
 
 </html>
