@@ -1,7 +1,159 @@
 {% extends 'index.html' %}
 
-{% block content %}
+{% block style %}
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+{% endblock %}
 
-<h1>This is HomePage.</h1>
+{% block content %}
+<main class="grid w-screen my-[25vh] place-content-center text-center px-[5vw]">
+    <div class="flex items-center justify-center bg-black mb-7">
+        <div class="group relative">
+            <div
+                class="absolute -inset-1 rounded-lg bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 opacity-50 blur transition duration-500 group-hover:opacity-90">
+            </div>
+            <button class="relative rounded-lg bg-black px-5 py-1 text-white">Get summaries in a flash!⚡️</button>
+        </div>
+    </div>
+    <div class="tagline opacity-0 my-3">
+        <h1
+            class="bg-gradient-to-br from-rose-400 via-fuchsia-500 to-indigo-500/40 bg-clip-text py-3 text-5xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-6xl md:text-7xl lg:text-8xl">
+            TLDR; made easy with SummarizeAI.
+        </h1>
+        <h2 class="text-zinc-400 font-normal text-xl mt-4">
+            Conquer information overload with SummarizeAI. <br /> Precise summaries at your fingertips.
+        </h2>
+        <button
+            class="inline-flex font-normal items-center justify-center rounded-lg bg-white text-black py-1.5 px-7 mt-10 group">
+            <span>Get Started</span>
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="ml-1 size-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1">
+                <path
+                    d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
+                    fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+            </svg>
+        </button>
+    </div>
+</main>
+
+
+
+<!-- <section class="my-40">
+    <div>
+        <h1
+            class="text-white text-center text-5xl font-medium leading-none tracking-tighter text-balance sm:text-5xl md:text-6xl lg:text-7xl">
+            Who We Are
+        </h1>
+    </div>
+
+    <div class="text-center mx-[7vw] my-20">
+        <p class="text-zinc-600 text-3xl font-bold">
+            We're SummarizeAI, your AI-powered content companion. Our mission is to simplify the way you consume
+            information. With our advanced technology, we transform lengthy texts, documents, and videos into concise
+            summaries, saving you time and effort. Experience the future of information processing with SummarizeAI.
+        </p>
+    </div>
+</section> -->
+
+
+
+
+<section class="mt-24 py-24 box">
+    <div>
+        <h1
+            class="text-white text-center text-5xl font-medium leading-none tracking-tighter text-balance sm:text-5xl md:text-6xl lg:text-7xl">
+            Products
+        </h1>
+    </div>
+    <div class="my-20 mx-[10vw] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-zinc-700/10 rounded-2xl border border-zinc-800 cursor-pointer shadow-2xl subbox">
+            <div class="my-8 mx-8">
+                <span class="material-symbols-outlined text-5xl text-rose-400">
+                    description
+                </span>
+                <h1 class="my-4 font-semibold text-2xl">
+                    Document Summarization
+                </h1>
+
+                <p class="text-zinc-400 font-normal">
+                    SummarizeAI instantly condenses lengthy documents into concise summaries. Quickly grasp key points,
+                    save time, and boost productivity with our AI-powered tool.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="bg-zinc-700/10 rounded-2xl border border-zinc-800 cursor-pointer shadow-2xl subbox">
+            <div class="my-8 mx-8">
+                <span class="material-symbols-outlined text-5xl text-blue-400">
+                    youtube_activity
+                </span>
+                <h1 class="my-4 font-semibold text-2xl">
+                    Youtube Video Summarization
+                </h1>
+
+                <p class="text-zinc-400 font-normal">
+                    SummarizeAI quickly transforms long YouTube videos into concise summaries. Grab key points without
+                    watching the entire video.
+                </p>
+            </div>
+        </div>
+
+        <div class="bg-zinc-700/10 rounded-2xl border border-zinc-800 cursor-pointer shadow-2xl subbox">
+            <div class="my-8 mx-8">
+                <span class="material-symbols-outlined text-5xl text-emerald-400">
+                    mic
+                </span>
+                <h1 class="my-4 font-semibold text-2xl">
+                    Audio Summarization
+                </h1>
+
+                <p class="text-zinc-400 font-normal">
+                    SummarizeAI quickly transforms long YouTube videos into concise summaries. Grab key points without
+                    watching the entire video.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="bg-zinc-700/10 rounded-2xl border border-zinc-800 cursor-pointer shadow-2xl lg:col-start-2 subbox">
+            <div class="my-8 mx-8">
+                <span class="material-symbols-outlined text-5xl text-violet-500">
+                    globe
+                </span>
+                <h1 class="my-4 font-semibold text-2xl">
+                    Webpage Summarization
+                </h1>
+
+                <p class="text-zinc-400 font-normal">
+                    SummarizeAI quickly transforms long YouTube videos into concise summaries. Grab key points without
+                    watching the entire video.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="w-screen h-[50vh] md:h-[75vh] place-content-center px-10 mb-[100vh]">
+    <!-- <div class="w-[3rem] h-[3rem] bg-rose-200 rounded-3xl absolute ball blur" data-speed=".25"></div>
+    <div class="w-[3rem] h-[3rem] bg-rose-200 rounded-3xl right-10 absolute ball" data-speed=".05"></div>
+    <div class="w-[5rem] h-[5rem] bg-emerald-700 rounded-3xl left-[20vw] absolute ball" data-speed=".35"></div>
+    <div class="w-[3rem] h-[3rem] bg-rose-200 rounded-3xl left-[30vw] absolute ball" data-speed=".15"></div>
+    <div class="w-[3rem] h-[3rem] bg-rose-200 rounded-3xl left-[50vw] absolute ball" data-speed=".95"></div>
+    <div class="w-[3rem] h-[3rem] bg-rose-200 rounded-3xl left-[70vw] absolute ball" data-speed=".75"></div>
+    <div class="w-[3rem] h-[3rem] bg-rose-200 rounded-3xl left-[10vw] absolute ball" data-speed=".5"></div> -->
+    <h1
+        class="bg-gradient-to-br from-zinc-800 via-zinc-600 to-zinc-500 bg-clip-text py-3 text-7xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-7xl md:text-8xl lg:text-8xl">
+        From <span class="text-white entertext">articles</span> to videos,<br /> 
+        we've got you <span class="text-white entertext">covered.</span>
+    </h1>
+</section>
+{% endblock %}
+
+
+
+{% block script %}
 
 {% endblock %}
