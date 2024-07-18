@@ -28,10 +28,10 @@ load_dotenv(BASE_DIR / ".env")
 SECRET_KEY = 'django-insecure-g&@ux^676un_+#_6u_!!=f_z%%oqo4pc$wkokkyja7%ojyb+ul'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*", "8000-adityapatwa-summarizeai-c4kuubmaugs.ws-us115.gitpod.io"]
-CSRF_TRUSTED_ORIGINS = ['https://8000-adityapatwa-summarizeai-c4kuubmaugs.ws-us115.gitpod.io']
+ALLOWED_HOSTS = ["summarizeai.onrender.com"]
+CSRF_TRUSTED_ORIGINS = ['https://summarizeai.onrender.com']
 
 # Application definition
 
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -144,3 +145,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "site/media")
 
 LOGIN_REDIRECT_URL = "/dashboard"
 LOGOUT_REDIRECT_URL = "/"
+
+
+
+
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
