@@ -30,8 +30,8 @@ SECRET_KEY = 'django-insecure-g&@ux^676un_+#_6u_!!=f_z%%oqo4pc$wkokkyja7%ojyb+ul
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["summarizeai.onrender.com"]
-CSRF_TRUSTED_ORIGINS = ['https://summarizeai.onrender.com']
+ALLOWED_HOSTS = ["summarizeai-x4ib.onrender.com"]
+CSRF_TRUSTED_ORIGINS = ['https://summarizeai-x4ib.onrender.com']
 
 # Application definition
 
