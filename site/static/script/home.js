@@ -102,7 +102,7 @@ fadeentertext.forEach(text => {
     scrollTrigger: {
       trigger: text,
       scrub: true,
-      start: `top center`,
+      start: `top-=100px center`,
       end: `bottom center`
     }
   });
