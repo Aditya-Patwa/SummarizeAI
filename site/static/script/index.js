@@ -55,3 +55,4 @@ openNav.addEventListener("click", () => {
 closeNav.addEventListener("click", () => {
     tl.reverse();
 });
+

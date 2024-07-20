@@ -1,4 +1,3 @@
-
 gsap.fromTo(".tagline", { opacity: 0, y: 40, delay: 4 }, { opacity: 1, y: 0, duration: 1, ease: "sine.out" });
 
 const boxes = gsap.utils.toArray('.box');
@@ -173,8 +172,27 @@ gsap.to(".backcover", {
     scrub: true,
     start: `center center`,
     end: `bottom center`,
-    pin: true,
-    anticipatePin: 0,
+    pin: true
   }
 });
+
+
+
+gsap.set(".faqs", {
+  opacity: 0,
+  y: 50
+});
+
+gsap.to(".faqs", {
+  y: 0,
+  opacity: 1,
+  ease: "sine.out",
+  immediateRender: false,
+  scrollTrigger: {
+      trigger: ".backcovermove",
+      scrub: true,
+      start: `top+=${window.innerHeight*2.2} center`,
+      end: `top+=${window.innerHeight*2.55} center`
+  }
+})
 

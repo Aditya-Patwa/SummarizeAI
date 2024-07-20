@@ -1,0 +1,113 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="grid h-[40vh] justify-center items-center">
+    <h1 class="textenter bg-gradient-to-t text-center from-zinc-500/60 via-zinc-200 to-zinc-100 bg-clip-text py-3 text-5xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-5xl md:text-6xl lg:text-7xl">
+        Products    
+    </h1>
+</div>
+
+<div class="mt-8 mb-32 mx-[10vw] grid grid-cols-1 md:grid-cols-2 gap-6 productsbox">
+    <div class="bg-zinc-950/10 rounded-2xl border border-zinc-900 cursor-pointer shadow-2xl subbox">
+        <div class="my-8 mx-8">
+            <span class="material-symbols-outlined text-5xl text-rose-400">
+                description
+            </span>
+            <h1 class="my-4 font-semibold text-2xl">
+                Document Summarization
+            </h1>
+
+            <p class="text-zinc-400 font-normal">
+                SummarizeAI instantly condenses lengthy documents into concise summaries. Quickly grasp key points,
+                save time, and boost productivity with our AI-powered tool.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="bg-zinc-950/10 rounded-2xl border border-zinc-900 cursor-pointer shadow-2xl subbox">
+        <div class="my-8 mx-8">
+            <span class="material-symbols-outlined text-5xl text-blue-400">
+                youtube_activity
+            </span>
+            <h1 class="my-4 font-semibold text-2xl">
+                Youtube Video Summarization
+            </h1>
+
+            <p class="text-zinc-400 font-normal">
+                SummarizeAI quickly transforms long YouTube videos into concise summaries. Grab key points without
+                watching the entire video.
+            </p>
+        </div>
+    </div>
+
+    <div class="bg-zinc-950/10 rounded-2xl border border-zinc-900 cursor-pointer shadow-2xl subbox">
+        <div class="my-8 mx-8">
+            <span class="material-symbols-outlined text-5xl text-emerald-400">
+                mic
+            </span>
+            <h1 class="my-4 font-semibold text-2xl">
+                Audio Summarization
+            </h1>
+
+            <p class="text-zinc-400 font-normal">
+                SummarizeAI quickly transforms long YouTube videos into concise summaries. Grab key points without
+                watching the entire video.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="bg-zinc-950/10 rounded-2xl border border-zinc-900 cursor-pointer shadow-2xl lg:col-start-2 subbox">
+        <div class="my-8 mx-8">
+            <span class="material-symbols-outlined text-5xl text-violet-500">
+                globe
+            </span>
+            <h1 class="my-4 font-semibold text-2xl">
+                Webpage Summarization
+            </h1>
+
+            <p class="text-zinc-400 font-normal">
+                SummarizeAI quickly transforms long YouTube videos into concise summaries. Grab key points without
+                watching the entire video.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    gsap.set(".textenter", {
+        opacity: 0, 
+        y: 30
+    });
+
+    gsap.fromTo(".textenter", {
+        opacity: 0,
+        y: 30,
+    }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "sine.out",
+        delay: .5
+    })
+
+    gsap.set(".productsbox", {
+        opacity: 0, 
+        y: 30
+    });
+
+    gsap.fromTo(".productsbox", {
+        opacity: 0,
+        y: 30,
+    }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: .75,
+        ease: "sine.out"
+    })
+</script>
+{% endblock %}

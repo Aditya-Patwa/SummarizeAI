@@ -1,0 +1,62 @@
+{% extends 'dashboard/index.html' %}
+
+
+{% block content %}
+
+<section class="summarizeform w-screen inset-x-0 z-10 top-full h-screen fixed top-0 bg-emerald-50">
+    <div class="py-8 px-8 md:py-12 md:px-16 flex justify-end">
+        <button class="navitem grid place-content-center rounded-md" id="closeform">
+            <span class="material-symbols-outlined text-emerald-500 text-4xl sm:text-4xl md:text-6xl">
+                close
+            </span>
+        </button>
+    </div>
+
+    <div class="md:px-[10vw]">
+        <div>
+            <h1 class="text-center text-emerald-600 py-3 text-4xl font-bold leading-none tracking-tighter text-balance sm:text-4xl md:text-5xl lg:text-5xl px-5">
+                Summarize Web page
+            </h1>
+        </div>
+
+        <div class="grid place-content-center py-16">
+            <form action="" class="grid md:grid-cols-5" method="post">
+                {% csrf_token %}
+                <input type="text" required placeholder="Enter Webpage Link" class="col-span-3 text-left bg-transparent border-4 placeholder-emerald-600/50 border-emerald-600 text-emerald-600 outline-none cursor-pointer duration-300 ease-in-out py-3 text-2xl font-medium leading-none tracking-tighter text-balance sm:text-2xl md:text-3xl lg:text-4xl px-5" name="" id="" />
+                <input type="submit" class="col-span-2 mt-2 md:mt-0 text-center bg-emerald-600 hover:bg-emerald-700 cursor-pointer duration-300 ease-in-out py-3 text-2xl font-medium leading-none tracking-tighter text-balance sm:text-2xl md:text-3xl lg:text-4xl px-5" value="Summarize">
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="text-center py-12">
+    <button id="openform" class="openform bg-gradient-to-r px-4 rounded-md from-rose-400 via-fuchsia-500 to-indigo-500 py-3 text-xl font-semibold leading-none tracking-tighter text-balance">
+        <h1 class="text-black">
+            Summarize Webpage
+        </h1>
+    </button>
+</div>
+
+
+{% endblock %}
+
+
+{% block script %}
+<script>
+    let tl = gsap.timeline({paused: true});
+
+    tl.to(".summarizeform", {
+        top: 0,
+        duration: .5,
+        ease: "power4.out"
+    });
+
+    document.getElementById("openform").addEventListener("click", () => {
+        tl.play();
+    });
+
+    document.getElementById("closeform").addEventListener("click", () => {
+        tl.reverse();
+    });
+</script>
+{% endblock %}

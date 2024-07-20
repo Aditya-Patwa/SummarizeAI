@@ -1,7 +1,242 @@
-{% extends 'index.html' %}
+{% extends 'dashboard/index.html' %}
 
 {% block content %}
-<h1>Welcome to Dashboard!</h1>
+<section class="w-screen md:px-[10vw] bg-zinc-950">
+    <div class="px-8 h-[10vh] py-12 pt-16">
+        <h1 class="text-white font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+            Your Spaces
+        </h1>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-10 py-12">
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+        <a href="/">
+            <div class="bg-black rounded-md px-8 border border-zinc-800 text-center py-8">
+                <div>
+                    <h1 class="inline-flex items-center justify-center font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        Create New
+                    </h1>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+
+<!-- Recent Summaries  -->
+<section class="w-screen md:px-[10vw] py-12 bg-zinc-950">
+    <div class="flex justify-between px-8 h-[10vh] py-12 group cursor-pointer">
+        <h1 class="text-white font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+            Recent Summaries
+        </h1>
+        <button class="h-10 w-10 grid place-content-center rounded-md" id="openNav">
+            <span class="material-symbols-outlined text-2xl sm:text-3xl md:text-4xl lg:text-5xl  transition-transform duration-300 ease-in-out group-hover:translate-x-2">
+                arrow_forward
+            </span>
+        </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-10 py-12">
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
 
 
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+        <a href="/dashboard/summaries/all">
+            <div class="bg-black rounded-md px-8 border border-zinc-800 text-center py-8">
+                <div>
+                    <h1 class="inline-flex items-center justify-center font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        View All
+                    </h1>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+
+
+
+<!-- 
+<section class="w-screen md:px-[10vw] py-12 bg-zinc-950">
+    <div class="flex justify-between px-8 h-[10vh] py-12 group cursor-pointer">
+        <h1 class="text-rose-500 font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+            Youtube Video Summaries
+        </h1>
+        <button class="h-10 w-10 grid place-content-center rounded-md" id="openNav">
+            <span class="material-symbols-outlined text-rose-500 text-2xl sm:text-3xl md:text-4xl lg:text-5xl  transition-transform duration-300 ease-in-out group-hover:translate-x-2">
+                arrow_forward
+            </span>
+        </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-10 py-12">
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+
+
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+        <a href="/dashboard/summaries/all">
+            <div class="bg-rose-500/10 rounded-md px-8 border border-zinc-800 text-center py-8">
+                <div>
+                    <h1 class="inline-flex items-center justify-center font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        View All
+                    </h1>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+
+
+
+<section class="w-screen md:px-[10vw] py-12 bg-zinc-950">
+    <div class="flex justify-between px-8 h-[10vh] py-12 group cursor-pointer">
+        <h1 class="text-emerald-500 font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+            Webpage Summaries
+        </h1>
+        <button class="h-10 w-10 grid place-content-center rounded-md" id="openNav">
+            <span class="material-symbols-outlined text-emerald-500 text-2xl sm:text-3xl md:text-4xl lg:text-5xl  transition-transform duration-300 ease-in-out group-hover:translate-x-2">
+                arrow_forward
+            </span>
+        </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-10 py-12">
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+
+
+        <a href="/">
+            <div class="bg-black rounded-md px-8 bg-zinc-900 text-center border border-zinc-800 py-8">
+                <div>
+                    <h1 class="font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        My Space
+                    </h1>
+                </div>
+            </div>
+        </a>
+        <a href="/dashboard/summaries/all">
+            <div class="bg-emerald-500/10 rounded-md px-8 border border-zinc-800 text-center py-8">
+                <div>
+                    <h1 class="inline-flex items-center justify-center font-bold text-zinc-100 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                        View All
+                    </h1>
+                </div>
+            </div>
+        </a>
+    </div>
+</section> -->
 {% endblock %}

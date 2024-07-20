@@ -4,8 +4,6 @@ import os
 
 # Create your views here.
 
-
-
 def summarize_webpage(request):
     requested_web_url = request.body.decode("utf-8")
 

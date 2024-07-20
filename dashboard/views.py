@@ -15,7 +15,7 @@ def summarize_youtube_video(request):
 
 @login_required
 def summarize_webpage(request):
-    pass
+    return render(request, "dashboard/products/summarize_webpage.html")
 
 
 @login_required

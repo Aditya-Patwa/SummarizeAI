@@ -1,9 +1,44 @@
 {% extends 'index.html' %}
 
+
+{% block style %}
+<style>
+    li {
+        list-style-type: none;
+    }
+</style>
+{% endblock %}
+
+
 {% block content %}
-<form action="" method="post">
-    {% csrf_token%}
-    {{form}}
-    <input type="submit" value="Login">
-</form>
-{% endblock%}
+<div class="grid justify-center items-center py-10 mx-2 px-[7vw]">
+    <h1
+        class="bg-gradient-to-t text-center from-zinc-500/60 via-zinc-200 to-zinc-100 bg-clip-text py-3 text-5xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-5xl md:text-6xl lg:text-7xl">
+        Login to conquer information overload. </h1>
+</div>
+
+<div class="min-h-[60vh] w-screen grid place-content-center">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_ul}}
+        <div class="grid justify-end">
+            <button type="submit" class="px-16 py-2 bg-zinc-400 hover:bg-zinc-100 duration-300 ease-in-out text-black font-bold text-2xl my-8 cursor-pointer text-center" type="submit">Log in</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+<script>
+    const allLists = document.getElementsByTagName("li");
+
+    for (let i = 0; i < allLists.length; i++) {
+        const list = allLists[i];
+        const input = list.children[1];
+        console.log(input);
+    }
+</script>
+
+{% endblock %}
