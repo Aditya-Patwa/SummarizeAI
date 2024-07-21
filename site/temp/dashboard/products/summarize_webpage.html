@@ -22,7 +22,7 @@
         <div class="grid place-content-center py-16">
             <form action="" class="grid md:grid-cols-5" method="post">
                 {% csrf_token %}
-                <input type="text" required placeholder="Enter Webpage Link" class="col-span-3 text-left bg-transparent border-4 placeholder-emerald-600/50 border-emerald-600 text-emerald-600 outline-none cursor-pointer duration-300 ease-in-out py-3 text-2xl font-medium leading-none tracking-tighter text-balance sm:text-2xl md:text-3xl lg:text-4xl px-5" name="" id="" />
+                <input type="text" required placeholder="Enter Webpage Link" class="col-span-3 text-left bg-transparent border-4 placeholder-emerald-600/50 border-emerald-600 text-emerald-600 outline-none cursor-pointer duration-300 ease-in-out py-3 text-2xl font-medium leading-none tracking-tighter text-balance sm:text-2xl md:text-3xl lg:text-4xl px-5" name="webpage_link" id="" />
                 <input type="submit" class="col-span-2 mt-2 md:mt-0 text-center bg-emerald-600 hover:bg-emerald-700 cursor-pointer duration-300 ease-in-out py-3 text-2xl font-medium leading-none tracking-tighter text-balance sm:text-2xl md:text-3xl lg:text-4xl px-5" value="Summarize">
             </form>
         </div>

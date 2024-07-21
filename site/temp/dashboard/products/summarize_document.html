@@ -1,0 +1,70 @@
+{% extends 'dashboard/index.html' %}
+
+{% block style %}
+<style>
+    input[type="file"]::file-selector-button {
+        display: none;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="summarizeform w-screen inset-x-0 z-10 top-full h-screen fixed top-0 bg-blue-50">
+    <div class="py-8 px-8 md:py-12 md:px-16 flex justify-end">
+        <button class="navitem grid place-content-center rounded-md" id="closeform">
+            <span class="material-symbols-outlined text-blue-500 text-4xl sm:text-4xl md:text-6xl">
+                close
+            </span>
+        </button>
+    </div>
+
+    <div class="md:px-[10vw]">
+        <div>
+            <h1 class="text-center text-blue-600 py-3 text-4xl font-bold leading-none tracking-tighter text-balance sm:text-4xl md:text-5xl lg:text-5xl px-5">
+                Summarize Document
+            </h1>
+        </div>
+
+        <div class="grid place-content-center py-16">
+            <form action="" class="grid md:grid-cols-5" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <input type="file" required placeholder="Enter Youtube Video Link" class="col-span-3 text-left bg-transparent border-4 placeholder-blue-600/50 border-blue-600 text-blue-600 outline-none cursor-pointer duration-300 ease-in-out py-3 text-2xl font-medium leading-none tracking-tighter text-balance sm:text-2xl md:text-3xl lg:text-4xl px-5" name="uploaded_document" value="Upload Document" id="" />
+                <input type="submit" class="col-span-2 mt-2 md:mt-0 text-center bg-blue-600 hover:bg-blue-700 cursor-pointer duration-300 ease-in-out py-3 text-2xl font-medium leading-none tracking-tighter text-balance sm:text-2xl md:text-3xl lg:text-4xl px-5" value="Summarize">
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="text-center py-12">
+    <button id="openform" class="openform bg-gradient-to-r px-4 rounded-md from-rose-400 via-fuchsia-500 to-indigo-500 py-3 text-xl font-semibold leading-none tracking-tighter text-balance">
+        <h1 class="text-black">
+            Summarize Document
+        </h1>
+    </button>
+</div>
+
+
+{% endblock %}
+
+
+{% block script %}
+<script>
+    let tl = gsap.timeline({paused: true});
+
+    tl.to(".summarizeform", {
+        top: 0,
+        duration: .5,
+        ease: "power4.out"
+    });
+
+    document.getElementById("openform").addEventListener("click", () => {
+        tl.play();
+    });
+
+    document.getElementById("closeform").addEventListener("click", () => {
+        tl.reverse();
+    });
+</script>
+{% endblock %}
