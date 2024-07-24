@@ -3,16 +3,16 @@ from langchain import hub
 from langchain_community.document_loaders import WebBaseLoader, YoutubeLoader, UnstructuredFileLoader, UnstructuredURLLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.combine_documents.stuff import StuffDocumentsChain
-from langchain.chains.llm import LLMChain
+from langchain.chains.summarize import load_summarize_chain
 from langchain_core.prompts import PromptTemplate
 import textwrap
 from langchain_chroma import Chroma
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnablePassthrough
+from langchain_core.runnables import RunnablePassthrough, RunnableSequence
 from api.models import WebpageSummary, YoutubeVideoSummary
 from bs4 import BeautifulSoup
 import requests
-from langchain.chains import RetrievalQAWithSourcesChain
+from langchain.chains import RetrievalQAWithSourcesChain, LLMChain
 
 # Loading LLM
 llm = HuggingFaceEndpoint(
@@ -36,18 +36,28 @@ def split_docs(documents, chunk_size=1000, chunk_overlap=20):
 def summarize_content(docs):
     # Define prompt
     prompt_template = """
-    Write a 5 to 10 paragraph detailed summary of the following:
-    "{text}"
-    5 TO 10 PARAGRAPH DETAILED SUMMARY:
+    You are an expert in summarizing content.
+    Your goal is to create a summary of a given content in about 5 to 10 paragraphs.
+    --------
+    {text}
+    --------
+
+    The content will also be used as the basis for a question and answer bot.
+    Provide some examples questions and answers that could be asked about the content. Make these questions very specific.
+
+    Total output will be a summary of the content and a list of example questions the user could ask of the content.
+
+    SUMMARY AND QUESTIONS:
     """
     prompt = PromptTemplate.from_template(prompt_template)
+    summarizing_chain = prompt | llm | StrOutputParser()
     # Define LLM chain
-    llm_chain = LLMChain(llm=llm, prompt=prompt)
-    # Define StuffDocumentsChain
-    stuff_chain = StuffDocumentsChain(llm_chain=llm_chain, document_variable_name="text")
-    result = stuff_chain.invoke(docs)
+    # llm_chain = LLMChain(llm=llm, prompt=prompt)
+    # # Define StuffDocumentsChain
+    # stuff_chain = StuffDocumentsChain(llm_chain=llm_chain, document_variable_name="text")
+    result = summarizing_chain.invoke({ "text": docs })
 
-    return result['output_text']
+    return result
 
 # Loading Web Pages
 def load_web_page(link, user):
@@ -58,7 +68,11 @@ def load_web_page(link, user):
         r = requests.get(link) 
         soup = BeautifulSoup(r.content, 'html.parser')
         site_title = soup.title.string
-        result = summarize_content(docs)
+        try:
+            result = summarize_content(docs)
+            print("Successfully SUmmarized")
+        except:
+            print("Unable to Summarhfkhghfsg")
         webpagesummary_model = WebpageSummary(name=site_title, user=user, link=link, summary=result)
         # vectorstore = Chroma.from_documents(collection_name="bootstrap_docs", documents=docs, embedding=HuggingFaceEmbeddings(), persist_directory=f"./chroma_db/{user.username}/{webpagesummary_model.summary_id}")
         # print(vectorstore.get(["ids", "embeddings", "metadatas", "documents"]))

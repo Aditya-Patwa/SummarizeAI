@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from dashboard.models import Space
-from datetime import datetime
+from django.utils import timezone
 import uuid
 
 # Create your models here.
@@ -13,7 +13,7 @@ class YoutubeVideoSummary(models.Model):
     question_answers = models.JSONField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     summary_id = models.UUIDField(default=uuid.uuid4, editable=False)
-    created_at = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering = ["-created_at"]
@@ -31,7 +31,7 @@ class WebpageSummary(models.Model):
     question_answers = models.JSONField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     summary_id = models.UUIDField(default=uuid.uuid4, editable=False)
-    created_at = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering = ["-created_at"]
