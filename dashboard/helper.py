@@ -36,9 +36,9 @@ def split_docs(documents, chunk_size=1000, chunk_overlap=20):
 def summarize_content(docs):
     # Define prompt
     prompt_template = """
-    Write a 3 to 5 paragraph detailed summary of the following:
+    Write a 5 to 10 paragraph detailed summary of the following:
     "{text}"
-    3 TO 5 PARAGRAPHS DETAILED SUMMARY:
+    5 TO 10 PARAGRAPH DETAILED SUMMARY:
     """
     prompt = PromptTemplate.from_template(prompt_template)
     # Define LLM chain

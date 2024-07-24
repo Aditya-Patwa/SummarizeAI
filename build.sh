@@ -2,6 +2,8 @@
 # Exit on error
 set -o errexit
 
+sudo apt-get update && sudo apt-get install sqlite3
+
 # Modify this line as needed for your package manager (pip, poetry, etc.)
 poetry install
 

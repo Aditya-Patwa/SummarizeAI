@@ -2,8 +2,19 @@
 
 {% block content %}
 
-<h1>
-    This is dashboard..
-</h1>
+<div class="grid place-content-center w-screen py-16">
+    <div class="grid grid-cols-2 gap-3 w-[90vw] md:md-[60vw]">
+        <div class="bg-rose-600 hover:bg-rose-700 text-center py-8 rounded-lg">
+            <a href="/dashboard/summarize/youtube" class="text-white text-xl md:text-4xl font-bold">
+                Summarize Youtube Video
+            </a>
+        </div>
+        <div class="bg-emerald-600 hover:bg-emerald-700 text-center py-8 rounded-lg">
+            <a href="/dashboard/summarize/webpage" class="text-white text-xl md:text-4xl font-bold">
+                Summarize Webpage
+            </a>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
