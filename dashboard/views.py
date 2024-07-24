@@ -56,15 +56,17 @@ def summarize_document(request):
 def view_webpage_summary(request, summary_id):
     try:
         summary = WebpageSummary.objects.get(user=request.user, summary_id=summary_id)
+        summaries = summary.summary.split("\n")
     except WebpageSummary.DoesNotExist:
         return HttpResponseNotFound("Summary Not Found!")
-    return render(request, "dashboard/summary/webpage.html", { "summary": summary })
+    return render(request, "dashboard/summary/webpage.html", { "summary": summary, "summaries": summaries })
 
 
 @login_required
 def view_youtube_summary(request, summary_id):
     try:
         summary = YoutubeVideoSummary.objects.get(user=request.user, summary_id=summary_id)
+        summaries = summary.summary.split("\n")
     except WebpageSummary.DoesNotExist:
         return HttpResponseNotFound("Summary Not Found!")
-    return render(request, "dashboard/summary/youtube.html", { "summary": summary })
+    return render(request, "dashboard/summary/youtube.html", { "summary": summary, "summaries": summaries })

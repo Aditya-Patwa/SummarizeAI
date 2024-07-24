@@ -4,9 +4,9 @@
 {% block content %}
 <input type="hidden" name="" id="summaryid" value="{{summary.summary_id}}">
 
-<div class="grid h-[40vh] justify-center items-center">
+<div class="grid justify-center items-center">
     <a href="{{summary.link}}" target="_blank"
-        class="textenter text-blue-500 text-center py-3 text-3xl font-bold leading-none tracking-tighter text-balance sm:text-3xl md:text-4xl lg:text-5xl">
+        class="textenter text-blue-500 text-center py-16 text-2xl font-bold leading-none tracking-tighter text-balance sm:text-3xl md:text-4xl lg:text-5xl">
         {{summary.name}}
         <span class="material-symbols-outlined">
             link
@@ -16,10 +16,12 @@
 
 
 <section class="summarybox w-screen grid items-center px-[5vw] pb-10 border-b border-zinc-800">
-    <h3
-        class="introduction bg-gradient-to-br text-center from-zinc-600 via-zinc-500 to-zinc-400 bg-clip-text py-3 text-2xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-2xl md:text-3xl lg:text-3xl">
-        {{summary.summary}}
-    </h3>
+        {% for summ in summaries %}
+        <h3
+            class="introduction bg-gradient-to-br text-left from-zinc-600 via-zinc-500 to-zinc-400 bg-clip-text py-1.5 text-xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-2xl md:text-3xl lg:text-3xl">
+            {{summ}}
+        </h3>
+        {% endfor %}
 </section>
 
 
@@ -83,34 +85,39 @@
     })
 
 
+    
+        const introduction = gsap.utils.toArray('.introduction');
+        introduction.forEach(intro => {
+            gsap.to(intro, {
+                scrollTrigger: {
+                    trigger: intro,
+                    start: `top center`,
+                    end: `bottom center`,
+                    scrub: true,
+                    onUpdate: self => {
+                        let text = intro.textContent.trim();
 
-    gsap.to(".introduction", {
-        scrollTrigger: {
-            trigger: ".introduction",
-            start: `top center`,
-            end: `bottom center`,
-            scrub: true,
-            onUpdate: self => {
-                let myDiv = document.getElementsByClassName("introduction")[0];
-                let text = myDiv.textContent.trim();
+                        const point = Math.ceil(text.length * self.progress);
+                        const words = text.substring(0, point);
+                        const remainingWords = text.substring(point);
 
-                const point = Math.ceil(text.length * self.progress);
-                const words = text.substring(0, point);
-                const remainingWords = text.substring(point);
+                        const readSpan = document.createElement('span');
+                        readSpan.textContent = words;
+                        readSpan.classList.add("text-white");
 
-                const readSpan = document.createElement('span');
-                readSpan.textContent = words;
-                readSpan.classList.add("text-white");
+                        const remainingSpan = document.createElement('span');
+                        remainingSpan.textContent = remainingWords;
 
-                const remainingSpan = document.createElement('span');
-                remainingSpan.textContent = remainingWords;
+                        intro.innerHTML = "";
+                        intro.appendChild(readSpan);
+                        intro.appendChild(remainingSpan);
+                    }
+                }
+            })
+        });
 
-                myDiv.innerHTML = "";
-                myDiv.appendChild(readSpan);
-                myDiv.appendChild(remainingSpan);
-            }
-        }
-    })
+
+    
 
 
     // let question = document.getElementById("question");

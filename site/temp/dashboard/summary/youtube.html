@@ -5,7 +5,7 @@
 
 <div class="grid h-[40vh] justify-center items-center">
     <a href="https://www.youtube.com/watch?v={{summary.video_id}}" target="_blank"
-        class="textenter text-blue-500 text-center py-3 text-3xl font-bold leading-none tracking-tighter text-balance sm:text-3xl md:text-4xl lg:text-5xl">
+        class="textenter text-rose-500 text-center py-6 text-2xl font-bold leading-none tracking-tighter text-balance sm:text-3xl md:text-4xl lg:text-5xl">
         {{summary.name}}
         <span class="material-symbols-outlined">
             link
@@ -15,14 +15,21 @@
 
 
 <div class="textenter grid place-content-center">
-    <iframe class="w-[90vw] h-[50vw] md:w-[70vw] md:h-[34vw]" src="https://www.youtube.com/embed/{{summary.video_id}}" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    <iframe class="w-[90vw] h-[50vw] md:w-[70vw] md:h-[34vw]" src="https://www.youtube.com/embed/{{summary.video_id}}"
+        frameborder="0" allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
 </div>
 
 <section class="summarybox w-screen grid items-center px-[5vw] mb-[50vh] mt-8">
+    <h1 class="text-center py-2 text-2xl font-medium leading-none tracking-tighter text-white font-bold text-balance sm:text-3xl md:text-4xl lg:text-4xl">
+        Summary
+    </h1>
+    {% for summ in summaries %}
     <h3
-        class="introduction bg-gradient-to-br text-center from-zinc-500 via-zinc-400 to-zinc-300 bg-clip-text py-3 text-2xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-2xl md:text-3xl lg:text-3xl">
-        {{summary.summary}}
+        class="introduction bg-gradient-to-br text-left from-zinc-600 via-zinc-500 to-zinc-400 bg-clip-text py-1.5 text-xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-2xl md:text-3xl lg:text-3xl">
+        {{summ}}
     </h3>
+    {% endfor %}
 </section>
 
 {% endblock %}
@@ -31,7 +38,7 @@
 {% block script %}
 <script>
     gsap.set(".textenter", {
-        opacity: 0, 
+        opacity: 0,
         y: 30
     });
 
@@ -48,7 +55,7 @@
 
 
     gsap.set(".summarybox", {
-        opacity: 0, 
+        opacity: 0,
         y: 30
     });
 
@@ -63,35 +70,39 @@
         delay: .5
     })
 
-    
 
-gsap.to(".introduction", {
-  scrollTrigger: {
-    trigger: ".introduction",
-    start: `top center`,
-    end: `bottom center`,
-    scrub: true,
-    onUpdate: self => {
-      let myDiv = document.getElementsByClassName("introduction")[0];
-      let text = myDiv.textContent.trim();
+    const introduction = gsap.utils.toArray('.introduction');
+    introduction.forEach(intro => {
+        gsap.to(intro, {
+            scrollTrigger: {
+                trigger: intro,
+                start: `top center`,
+                end: `bottom center`,
+                scrub: true,
+                onUpdate: self => {
+                    let text = intro.textContent.trim();
 
-      const point = Math.ceil(text.length*self.progress);
-      const words = text.substring(0, point);
-      const remainingWords = text.substring(point);
+                    const point = Math.ceil(text.length * self.progress);
+                    const words = text.substring(0, point);
+                    const remainingWords = text.substring(point);
 
-      const readSpan = document.createElement('span');
-      readSpan.textContent = words;
-      readSpan.classList.add("text-white");
+                    const readSpan = document.createElement('span');
+                    readSpan.textContent = words;
+                    readSpan.classList.add("text-white");
 
-      const remainingSpan = document.createElement('span');
-      remainingSpan.textContent = remainingWords;
+                    const remainingSpan = document.createElement('span');
+                    remainingSpan.textContent = remainingWords;
 
-      myDiv.innerHTML = "";
-      myDiv.appendChild(readSpan);
-      myDiv.appendChild(remainingSpan);
-    }
-  }
-})
+                    intro.innerHTML = "";
+                    intro.appendChild(readSpan);
+                    intro.appendChild(remainingSpan);
+                }
+            }
+        })
+    });
+
+
+
 
 
 </script>

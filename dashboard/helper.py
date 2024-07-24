@@ -32,22 +32,19 @@ def split_docs(documents, chunk_size=1000, chunk_overlap=20):
     return docs
 
 
+# def summarize_content(docs):
+#     chain = load_summarize_chain(llm, chain_type="refine")
+#     result = chain.invoke(split_docs)
+
+#     return result["output_text"]
+
 
 def summarize_content(docs):
     # Define prompt
     prompt_template = """
-    You are an expert in summarizing content.
-    Your goal is to create a summary of a given content in about 5 to 10 paragraphs.
-    --------
-    {text}
-    --------
-
-    The content will also be used as the basis for a question and answer bot.
-    Provide some examples questions and answers that could be asked about the content. Make these questions very specific.
-
-    Total output will be a summary of the content and a list of example questions the user could ask of the content.
-
-    SUMMARY AND QUESTIONS:
+    Write a detailed summary of the following:
+    "{text}"
+    DETAILED SUMMARY:
     """
     prompt = PromptTemplate.from_template(prompt_template)
     summarizing_chain = prompt | llm | StrOutputParser()
@@ -70,9 +67,8 @@ def load_web_page(link, user):
         site_title = soup.title.string
         try:
             result = summarize_content(docs)
-            print("Successfully SUmmarized")
         except:
-            print("Unable to Summarhfkhghfsg")
+            print("Unable to Summarize")
         webpagesummary_model = WebpageSummary(name=site_title, user=user, link=link, summary=result)
         # vectorstore = Chroma.from_documents(collection_name="bootstrap_docs", documents=docs, embedding=HuggingFaceEmbeddings(), persist_directory=f"./chroma_db/{user.username}/{webpagesummary_model.summary_id}")
         # print(vectorstore.get(["ids", "embeddings", "metadatas", "documents"]))
