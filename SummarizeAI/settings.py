@@ -121,11 +121,11 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': getenv('PGDATABASE'),
-            'USER': getenv('PGUSER'),
-            'PASSWORD': getenv('PGPASSWORD'),
-            'HOST': getenv('PGHOST'),
-            'PORT': getenv('PGPORT', 5432),
+            'NAME': os.getenv('PGDATABASE'),
+            'USER': os.getenv('PGUSER'),
+            'PASSWORD': os.getenv('PGPASSWORD'),
+            'HOST': os.getenv('PGHOST'),
+            'PORT': os.getenv('PGPORT', 5432),
             'OPTIONS': {
                 'sslmode': 'require',
             },
