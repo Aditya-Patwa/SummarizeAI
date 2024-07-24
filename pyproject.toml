@@ -6,7 +6,7 @@ authors = ["Aditya Patwa <adityapatwa.tech@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.12,<3.13"
+python = ">=3.10,<3.13"
 django = "^5.0.7"
 langchain = "^0.2.7"
 langchain-community = "^0.2.7"
