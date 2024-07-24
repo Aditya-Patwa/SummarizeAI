@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -104,6 +106,10 @@ WSGI_APPLICATION = 'SummarizeAI.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
+
+
+
 
 DATABASES = {
     'default': {
