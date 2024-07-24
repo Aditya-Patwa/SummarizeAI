@@ -27,12 +27,12 @@ load_dotenv(BASE_DIR / ".env")
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g&@ux^676un_+#_6u_!!=f_z%%oqo4pc$wkokkyja7%ojyb+ul'
+SECRET_KEY = 'django-inlsdksfhgkshgksdhifyeiwhwkefhiyt7eouefef8686eyfudvldwiqwipqw_-=?>dvksfvs5753763'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["summarizeai-x4ib.onrender.com", "*"]
+ALLOWED_HOSTS = ["summarizeai-x4ib.onrender.com"]
 CSRF_TRUSTED_ORIGINS = ['https://summarizeai-x4ib.onrender.com']
 
 # Application definition
@@ -110,13 +110,28 @@ WSGI_APPLICATION = 'SummarizeAI.wsgi.application'
 
 
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': getenv('PGDATABASE'),
+            'USER': getenv('PGUSER'),
+            'PASSWORD': getenv('PGPASSWORD'),
+            'HOST': getenv('PGHOST'),
+            'PORT': getenv('PGPORT', 5432),
+            'OPTIONS': {
+                'sslmode': 'require',
+            },
+            'DISABLE_SERVER_SIDE_CURSORS': True,
+        }
+    }
 
 
 # Password validation
@@ -213,6 +228,19 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
+
+# CSRF_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+
+
+
+
+
+
+
+
 
 
 if not DEBUG:
