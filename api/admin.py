@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Summary, YoutubeVideoSummary, WebPageSummary
+from .models import YoutubeVideoSummary, WebpageSummary
 
 # Register your models here.
-admin.site.register(Summary)
 admin.site.register(YoutubeVideoSummary)
-admin.site.register(WebPageSummary)
+admin.site.register(WebpageSummary)

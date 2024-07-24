@@ -1,0 +1,153 @@
+{% extends 'dashboard/index.html' %}
+
+
+{% block content %}
+<input type="hidden" name="" id="summaryid" value="{{summary.summary_id}}">
+
+<div class="grid h-[40vh] justify-center items-center">
+    <a href="{{summary.link}}" target="_blank"
+        class="textenter text-blue-500 text-center py-3 text-3xl font-bold leading-none tracking-tighter text-balance sm:text-3xl md:text-4xl lg:text-5xl">
+        {{summary.name}}
+        <span class="material-symbols-outlined">
+            link
+        </span>
+    </a>
+</div>
+
+
+<section class="summarybox w-screen grid items-center px-[5vw] pb-10 border-b border-zinc-800">
+    <h3
+        class="introduction bg-gradient-to-br text-center from-zinc-600 via-zinc-500 to-zinc-400 bg-clip-text py-3 text-2xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-2xl md:text-3xl lg:text-3xl">
+        {{summary.summary}}
+    </h3>
+</section>
+
+
+<!-- <section class="textenter my-8 mb-[50vh]">
+    <h2
+        class="bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-clip-text text-transparent text-center py-3 text-xl font-medium leading-none tracking-tighter text-balance sm:text-xl md:text-2xl lg:text-3xl">
+        Any Doubt? Clear it.
+    </h2>
+
+    <div class="grid place-content-center">
+        <form method="post" id="form" class="w-screen px-[10vw] grid grid-cols-6 my-10">
+
+            {% csrf_token %}
+            <input type="text" name="" required class="col-span-5 py-2 px-3 bg-transparent border border-blue-500 outline-none"
+                placeholder="Enter Question" id="question">
+            <button type="submit" id="submitBtn"
+                class="col-span-1 grid place-content-center bg-blue-500 text-white text-lg">
+                <span class="material-symbols-outlined">
+                    send
+                </span>
+            </button>
+        </form>
+    </div>
+</section> -->
+{% endblock %}
+
+
+{% block script %}
+<script>
+    gsap.set(".textenter", {
+        opacity: 0,
+        y: 30
+    });
+
+    gsap.fromTo(".textenter", {
+        opacity: 0,
+        y: 30,
+    }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "sine.out",
+        delay: .5
+    })
+
+
+    gsap.set(".summarybox", {
+        opacity: 0,
+        y: 30
+    });
+
+    gsap.fromTo(".summarybox", {
+        opacity: 0,
+        y: 30,
+    }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "sine.out",
+        delay: .5
+    })
+
+
+
+    gsap.to(".introduction", {
+        scrollTrigger: {
+            trigger: ".introduction",
+            start: `top center`,
+            end: `bottom center`,
+            scrub: true,
+            onUpdate: self => {
+                let myDiv = document.getElementsByClassName("introduction")[0];
+                let text = myDiv.textContent.trim();
+
+                const point = Math.ceil(text.length * self.progress);
+                const words = text.substring(0, point);
+                const remainingWords = text.substring(point);
+
+                const readSpan = document.createElement('span');
+                readSpan.textContent = words;
+                readSpan.classList.add("text-white");
+
+                const remainingSpan = document.createElement('span');
+                remainingSpan.textContent = remainingWords;
+
+                myDiv.innerHTML = "";
+                myDiv.appendChild(readSpan);
+                myDiv.appendChild(remainingSpan);
+            }
+        }
+    })
+
+
+    // let question = document.getElementById("question");
+    // let submitBtn = document.getElementById("submitBtn");
+    // let form = document.getElementById("form");
+    // let summaryid = document.getElementById("summaryid").value;
+
+
+    // form.addEventListener("submit", (e) => {
+    //     e.preventDefault();
+    //     question.classList.add("cursor-not-allowed");
+    //     question.classList.add("opacity-50");
+    //     submitBtn.classList.add("cursor-not-allowed");
+    //     submitBtn.classList.add("opacity-50");
+    //     submitBtn.setAttribute("disabled", "true");
+    //     question.setAttribute("disabled", "true");
+
+
+    //     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    //     fetch("/api/ask_question/", {
+    //         method: "POST", body: JSON.stringify({ question: question.value, summaryid: summaryid }), headers: { 'X-CSRFToken': csrftoken },
+            
+    //     })
+    //     .then((res) => res.json())
+    //     .then(data => {
+    //         if(data.status = "success") {
+    //             question.value = "";
+    //             question.classList.remove("cursor-not-allowed");
+    //             question.classList.remove("opacity-50");
+    //             submitBtn.classList.remove("cursor-not-allowed");
+    //             submitBtn.classList.remove("opacity-50");
+    //             submitBtn.removeAttribute("disabled", "true");
+    //             question.removeAttribute("disabled", "true");
+    //             console.log(data.answer);
+    //         }
+    //     });
+    // });
+
+</script>
+{% endblock %}

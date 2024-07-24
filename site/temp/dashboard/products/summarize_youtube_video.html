@@ -20,7 +20,7 @@
         </div>
 
         <div class="grid place-content-center py-16">
-            <form action="" class="grid md:grid-cols-5" method="post">
+            <form action="" class="grid md:grid-cols-5" onsubmit="loadingtl.play()" method="post">
                 {% csrf_token %}
                 <input type="text" required placeholder="Enter Youtube Video Link" class="col-span-3 text-left bg-transparent border-4 placeholder-rose-600/50 border-rose-600 text-rose-600 outline-none cursor-pointer duration-300 ease-in-out py-3 text-2xl font-medium leading-none tracking-tighter text-balance sm:text-2xl md:text-3xl lg:text-4xl px-5" name="videolink" id="" />
                 <input type="submit" class="col-span-2 mt-2 md:mt-0 text-center bg-rose-600 hover:bg-rose-700 cursor-pointer duration-300 ease-in-out py-3 text-2xl font-medium leading-none tracking-tighter text-balance sm:text-2xl md:text-3xl lg:text-4xl px-5" value="Summarize">
@@ -38,6 +38,16 @@
 </div>
 
 
+<div class="grid place-content-center loadingscreen z-40 w-screen h-screen fixed top-full bg-zinc-950">
+    <div
+        class="text-center flex items-center text-zinc-50 py-3 text-4xl font-normal leading-none tracking-tighter text-balance sm:text-4xl md:text-5xl lg:text-5xl px-5">
+
+        <span class="material-symbols-outlined animate-spin text-3xl sm:text-3xl md:text-4xl lg:text-4xl px-4">
+            progress_activity
+        </span>
+        <h1>Processing...</h1>
+    </div>
+</div>
 {% endblock %}
 
 
@@ -57,6 +67,14 @@
 
     document.getElementById("closeform").addEventListener("click", () => {
         tl.reverse();
+    });
+
+    let loadingtl = gsap.timeline({paused: true});
+
+    loadingtl.to(".loadingscreen", {
+        top: 0,
+        duration: .75,
+        ease: "power4.out"
     });
 </script>
 {% endblock %}

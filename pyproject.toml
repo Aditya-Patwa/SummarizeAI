@@ -6,13 +6,24 @@ authors = ["Aditya Patwa <adityapatwa.tech@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = ">=3.12,<3.13"
 django = "^5.0.7"
 langchain = "^0.2.7"
 langchain-community = "^0.2.7"
 langchain-huggingface = "^0.0.3"
 python-dotenv = "^1.0.1"
 beautifulsoup4 = "^4.12.3"
+whitenoise = {extras = ["brotli"], version = "^6.7.0"}
+gunicorn = "^22.0.0"
+uvicorn = "^0.30.3"
+django-allauth = {extras = ["socialaccount"], version = "^0.63.6"}
+langchain-chroma = "^0.1.2"
+django-allauth-ui = "^1.2.0"
+django-widget-tweaks = "^1.5.0"
+slippers = "^0.6.2"
+youtube-transcript-api = "^0.6.2"
+pytube = "^15.0.0"
+unstructured = {extras = ["all-docs"], version = "^0.15.0"}
 
 
 [build-system]

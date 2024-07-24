@@ -1,0 +1,98 @@
+{% extends 'dashboard/index.html' %}
+
+
+{% block content %}
+
+<div class="grid h-[40vh] justify-center items-center">
+    <a href="https://www.youtube.com/watch?v={{summary.video_id}}" target="_blank"
+        class="textenter text-blue-500 text-center py-3 text-3xl font-bold leading-none tracking-tighter text-balance sm:text-3xl md:text-4xl lg:text-5xl">
+        {{summary.name}}
+        <span class="material-symbols-outlined">
+            link
+        </span>
+    </a>
+</div>
+
+
+<div class="grid place-content-center">
+    <iframe class="h-[50vh]" src="https://www.youtube.com/embed/{{summary.video_id}}" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+</div>
+
+<section class="summarybox w-screen grid items-center px-[5vw] mb-[50vh] mt-8">
+    <h3
+        class="introduction bg-gradient-to-br text-center from-zinc-500 via-zinc-400 to-zinc-300 bg-clip-text py-3 text-2xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-2xl md:text-3xl lg:text-3xl">
+        {{summary.summary}}
+    </h3>
+</section>
+
+{% endblock %}
+
+
+{% block script %}
+<script>
+    gsap.set(".textenter", {
+        opacity: 0, 
+        y: 30
+    });
+
+    gsap.fromTo(".textenter", {
+        opacity: 0,
+        y: 30,
+    }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "sine.out",
+        delay: .5
+    })
+
+
+    gsap.set(".summarybox", {
+        opacity: 0, 
+        y: 30
+    });
+
+    gsap.fromTo(".summarybox", {
+        opacity: 0,
+        y: 30,
+    }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "sine.out",
+        delay: .5
+    })
+
+    
+
+gsap.to(".introduction", {
+  scrollTrigger: {
+    trigger: ".introduction",
+    start: `top center`,
+    end: `bottom center`,
+    scrub: true,
+    onUpdate: self => {
+      let myDiv = document.getElementsByClassName("introduction")[0];
+      let text = myDiv.textContent.trim();
+
+      const point = Math.ceil(text.length*self.progress);
+      const words = text.substring(0, point);
+      const remainingWords = text.substring(point);
+
+      const readSpan = document.createElement('span');
+      readSpan.textContent = words;
+      readSpan.classList.add("text-white");
+
+      const remainingSpan = document.createElement('span');
+      remainingSpan.textContent = remainingWords;
+
+      myDiv.innerHTML = "";
+      myDiv.appendChild(readSpan);
+      myDiv.appendChild(remainingSpan);
+    }
+  }
+})
+
+
+</script>
+{% endblock %}

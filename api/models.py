@@ -6,12 +6,11 @@ import uuid
 
 # Create your models here.
 
-class Summary(models.Model):
+class YoutubeVideoSummary(models.Model):
     name = models.CharField(max_length=250)
     summary = models.JSONField(null=True, blank=True)
-    vectorstore = models.JSONField(null=True, blank=True)
+    video_id = models.CharField(max_length=100)
     question_answers = models.JSONField(null=True, blank=True)
-    space = models.ForeignKey(Space, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     summary_id = models.UUIDField(default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(default=datetime.now)
@@ -20,21 +19,32 @@ class Summary(models.Model):
         ordering = ["-created_at"]
 
     def __str__(self):
-        return f"Summary: {self.name}"
+        return f"Youtube Video Summary: {self.name}"
 
 
-class YoutubeVideoSummary(Summary):
+
+class WebpageSummary(models.Model):
+    name = models.CharField(max_length=250)
+    summary = models.JSONField(null=True, blank=True)
     video_id = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return f"Youtube Summary of Id: {video_id}"
-
-
-class WebPageSummary(Summary):
     link = models.TextField()
+    question_answers = models.JSONField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    summary_id = models.UUIDField(default=uuid.uuid4, editable=False)
+    created_at = models.DateTimeField(default=datetime.now)
+
+    class Meta:
+        ordering = ["-created_at"]
 
     def __str__(self):
-        return f"Website Summary: {self.link}"
+        return f"Webpage Summary: {self.name}"
+
+
+# class WebPageSummary(Summary):
+    # link = models.TextField()
+
+#     def __str__(self):
+#         return f"Website Summary: {self.link}"
 
 
 # class SummarizeYoutubeVideo(models.Model):
