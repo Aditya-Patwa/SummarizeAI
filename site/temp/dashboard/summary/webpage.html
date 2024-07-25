@@ -1,5 +1,7 @@
 {% extends 'dashboard/index.html' %}
 
+{% block title %}TLDR; {{summary.name}}{% endblock %}
+
 
 {% block content %}
 <input type="hidden" name="" id="summaryid" value="{{summary.summary_id}}">
