@@ -13,6 +13,8 @@ from api.models import WebpageSummary, YoutubeVideoSummary
 from bs4 import BeautifulSoup
 import requests
 from langchain.chains import RetrievalQAWithSourcesChain, LLMChain
+from django.contrib.auth.models import User
+from celery import shared_task
 
 # Loading LLM
 llm = HuggingFaceEndpoint(
@@ -57,6 +59,7 @@ def summarize_content(docs):
     return result
 
 # Loading Web Pages
+@shared_task()
 def load_web_page(link, user):
     try:
         loader = WebBaseLoader(link)
@@ -69,16 +72,17 @@ def load_web_page(link, user):
             result = summarize_content(docs)
         except:
             print("Unable to Summarize")
-        webpagesummary_model = WebpageSummary(name=site_title, user=user, link=link, summary=result)
+        webpagesummary_model = WebpageSummary(name=site_title, user=User.objects.get(id=user), link=link, summary=result)
         # vectorstore = Chroma.from_documents(collection_name="bootstrap_docs", documents=docs, embedding=HuggingFaceEmbeddings(), persist_directory=f"./chroma_db/{user.username}/{webpagesummary_model.summary_id}")
         # print(vectorstore.get(["ids", "embeddings", "metadatas", "documents"]))
         webpagesummary_model.save()
         
-        return (result, webpagesummary_model.summary_id)
+        return webpagesummary_model.summary_id
     except:
         return "Unable to load or summarize webpage :sob:"
 
 
+@shared_task()
 def load_youtube_video(link, user):
     video_id = YoutubeLoader.extract_video_id(link)
     loader = YoutubeLoader.from_youtube_url(link,
@@ -89,11 +93,11 @@ def load_youtube_video(link, user):
     docs = split_docs(documents)
     title = documents[0].metadata["title"]
     result = summarize_content(docs)
-    youtubevideosummary_model = YoutubeVideoSummary(name=title, video_id=video_id, user=user, summary=result)
+    youtubevideosummary_model = YoutubeVideoSummary(name=title, video_id=video_id, user=User.objects.get(id=user), summary=result)
     youtubevideosummary_model.save()
     # vectorstore = Chroma.from_documents(documents=docs, embedding=HuggingFaceEmbeddings(),  persist_directory="./chroma_db")
 
-    return (result, youtubevideosummary_model.summary_id)
+    return youtubevideosummary_model.summary_id
 
 
 
@@ -102,7 +106,6 @@ def load_document(url, user):
     documents = loader.load()
     docs = split_docs(documents)
     result = summarize_content(docs)
-    print(result)
 
 
 

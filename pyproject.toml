@@ -26,6 +26,8 @@ pytube = "^15.0.0"
 unstructured = {extras = ["all-docs"], version = "^0.15.0"}
 pysqlite3-binary = "^0.5.3"
 psycopg2-binary = "^2.9.9"
+celery = "^5.4.0"
+redis = "^5.0.7"
 
 
 [build-system]

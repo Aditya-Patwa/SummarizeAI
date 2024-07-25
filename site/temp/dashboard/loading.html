@@ -1,0 +1,59 @@
+{% extends 'dashboard/index.html' %}
+
+
+{% block title %}Loading{% endblock %}
+
+
+{% block content %}
+
+<h1 class="hidden" id="loadingid">
+    {{loadingid}}
+</h1>
+<h1 class="hidden" id="sitetype">
+    {{site_type}}
+</h1>
+<div class="grid place-content-center loadingscreen z-40 w-screen h-screen fixed top-0 bg-zinc-950">
+    <div
+        class="text-center flex items-center text-zinc-50 py-3 text-4xl font-normal leading-none tracking-tighter text-balance sm:text-4xl md:text-5xl lg:text-5xl px-5">
+
+        <span class="material-symbols-outlined animate-spin text-3xl sm:text-3xl md:text-4xl lg:text-4xl px-4">
+            progress_activity
+        </span>
+        <h1>Processing...</h1>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+<script>
+    let loadingid = document.getElementById("loadingid").textContent.trim();
+    let sitetype = document.getElementById("sitetype").textContent.trim();
+
+    let interval = setInterval(() => {
+        fetch(`/dashboard/summary/loading/${loadingid}/get_status`, {
+            method: "GET"
+        }).then((res) => res.json()).then(data => {
+            if(data.status == "SUCCESS") {
+                clearInterval(interval);
+
+                if(sitetype == "youtube") {
+                    window.location.href = `/dashboard/summary/youtube/${data.id}`;
+                } else {
+                    window.location.href = `/dashboard/summary/webpage/${data.id}`;
+                }
+            }
+
+            if(data.status == "FAILURE") {
+                clearInterval(interval);
+
+                alert("Oops! Unable to Summarize.")
+            }
+
+        });
+
+    }, 1000);
+
+</script>
+{% endblock %}
