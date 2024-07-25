@@ -56,14 +56,13 @@
 
             <div class="py-2 px-6">
                 <div class="navlink border-b border-zinc-800 py-2">
-                    <a href="/dashboard">
-                        <h1>Dashboard</h1>
+                    <a href="/">
+                        <h1>Home</h1>
                     </a>
                 </div>
-
                 <div class="navlink border-b border-zinc-800 py-2">
                     <a href="/dashboard">
-                        <h1>Profile</h1>
+                        <h1>Dashboard</h1>
                     </a>
                 </div>
 
@@ -96,22 +95,23 @@
 
                 </div> -->
 
-
-
                 <div class="navlink border-b border-zinc-800 py-2">
-                    <a href="/dashboard">
-                        <h1>Recent Summaries</h1>
+                    <a href="/dashboard/summarize/youtube">
+                        <h1>Summarize Youtube Video</h1>
                     </a>
                 </div>
 
-                
                 <div class="navlink border-b border-zinc-800 py-2">
-                    <a href="/dashboard">
-                        <h1>Summarize</h1>
+                    <a href="/dashboard/summarize/webpage">
+                        <h1>Summarize Webpage</h1>
                     </a>
                 </div>
 
-
+                <div class="navlink border-b border-zinc-800 py-2">
+                    <a href="mailto:adityapatwa.tech@gmail.com">
+                        <h1>Contact Us</h1>
+                    </a>
+                </div>
 
                 <!-- <div class="accordian navlink border-b border-zinc-800 py-2 cursor-pointer">
                     <div class="trigger flex justify-between group">
@@ -160,6 +160,8 @@
     
 
 
+
+
     <footer class="bg-black py-20 px-8 grid grid-cols-1 md:grid-cols-3">
         <div class="md:px-8">
             <h1 class="text-xl font-bold">
@@ -185,29 +187,29 @@
               <div class="text-sm">
                 <div class="py-1">
                   <a href="/" class="text-zinc-400 hover:text-zinc-300">
-                    Video Summarization
+                    Youtube Video Summarization
                   </a>
                 </div>
-                <div class="py-1">
+                <!-- <div class="py-1">
                   <a href="/" class="text-zinc-400 hover:text-zinc-300">
                     Audio Summarization
                   </a>
-                </div>
+                </div> -->
                 <div class="py-1">
                   <a href="/" class="text-zinc-400 hover:text-zinc-300">
                     Webpage Summarization
                   </a>
                 </div>
-                <div class="py-1">
-                  <a href="/" class="text-zinc-400 hover:text-zinc-300">
-                    Document Summarization
+                <!-- <div class="py-1">
+                  <a href="/" class="text-zinc-400 hover:text-zinc-300"> -->
+                    <!-- Document Summarization
                   </a>
                 </div>
                 <div class="py-1">
                   <a href="/" class="text-zinc-400 hover:text-zinc-300">
                     Youtube Video Summarization
                   </a>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="grid justify-start px-6">
@@ -223,22 +225,22 @@
                   </a>
                 </div>
                 <div class="py-1">
-                  <a href="/" class="text-zinc-400 hover:text-zinc-300">
+                  <a href="/products" class="text-zinc-400 hover:text-zinc-300">
                     Products
                   </a>
                 </div>
                 <div class="py-1">
-                  <a href="/" class="text-zinc-400 hover:text-zinc-300">
-                    Privacy Policy
+                  <a href="https://github.com/Aditya-Patwa/SummarizeAI/blob/main/LICENSE" targte="_blank" class="text-zinc-400 hover:text-zinc-300">
+                    LICENSE
                   </a>
                 </div>
                 <div class="py-1">
-                  <a href="/" class="text-zinc-400 hover:text-zinc-300">
-                    Terms of Use
+                  <a href="https://github.com/Aditya-Patwa/SummarizeAI" target="_blank" class="text-zinc-400 hover:text-zinc-300">
+                    Github Repo
                   </a>
                 </div>
                 <div class="py-1">
-                  <a href="/" class="text-zinc-400 hover:text-zinc-300">
+                  <a href="mailto:adityapatwa.tech@gmail.com" class="text-zinc-400 hover:text-zinc-300">
                     Contact Us
                   </a>
                 </div>
@@ -282,58 +284,56 @@
     
     <script src="{% static 'script/gsap.min.js' %}"></script>
     <script src="{% static 'script/ScrollTrigger.min.js' %}"></script>
-    {% block script %}
-        <script>
-            let tl = gsap.timeline({paused: true});
-            tl.add(() => {
-                document.getElementsByClassName("navbar")[0].classList.replace("grid", "hidden");
-            }, 0)
-            tl.add(() => {
-                document.getElementsByClassName("navbar")[0].classList.replace("hidden", "grid");
-            }, 0)
-            tl.to(".navbar", {
-                opacity: 0
-            });
+    <script>
+        let tl = gsap.timeline({paused: true});
+        tl.add(() => {
+            document.getElementsByClassName("navbar")[0].classList.replace("grid", "hidden");
+        }, 0)
+        tl.add(() => {
+            document.getElementsByClassName("navbar")[0].classList.replace("hidden", "grid");
+        }, 0)
+        tl.to(".navbar", {
+            opacity: 0
+        });
 
-            tl.to(".navbar", {
-                opacity: 1,
-                duration: .1,
-                ease: "sine.out"
-            });
+        tl.to(".navbar", {
+            opacity: 1,
+            duration: .1,
+            ease: "sine.out"
+        });
 
-            tl.to(".sidebar", {
-                left: 0,
-                duration: .5,
-                ease: "power4.out"
-            });
+        tl.to(".sidebar", {
+            left: 0,
+            duration: .5,
+            ease: "power4.out"
+        });
 
-            const navitem = gsap.utils.toArray('.navlink');
-            navitem.forEach(item => {
+        const navitem = gsap.utils.toArray('.navlink');
+        navitem.forEach(item => {
 
-            tl.fromTo(item, {
-                opacity: 0,
-                x: 20
-            }, {
-                opacity: 1,
-                x: 0,
-                ease: "power4.out",
-                duration: .2
-            })
-            });
+        tl.fromTo(item, {
+            opacity: 0,
+            x: 20
+        }, {
+            opacity: 1,
+            x: 0,
+            ease: "power4.out",
+            duration: .2
+        })
+        });
 
-            document.getElementById("openNav").addEventListener("click", () => {
-                tl.play();
-            })
+        document.getElementById("openNav").addEventListener("click", () => {
+            tl.play();
+        })
 
-            document.getElementById("closeNav").addEventListener("click", () => {
-                tl.reverse();
-            })
+        document.getElementById("closeNav").addEventListener("click", () => {
+            tl.reverse();
+        })
 
-            document.getElementsByClassName("coverhide")[0].addEventListener("click", () => {
-                tl.reverse();
-            })
-        </script>
-
-    {% endblock %}
+        document.getElementsByClassName("coverhide")[0].addEventListener("click", () => {
+            tl.reverse();
+        })
+    </script>
+    {% block script %}{% endblock %}
 </body>
 </html>

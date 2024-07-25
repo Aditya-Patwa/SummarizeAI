@@ -9,7 +9,9 @@ from langchain_community.document_loaders import YoutubeLoader
 
 @login_required
 def Dashboard(request):
-    return render(request, "dashboard/dashboard.html")
+    youtubevideos = YoutubeVideoSummary.objects.filter(user=request.user)[0:5]
+    webpage_summaries = WebpageSummary.objects.filter(user=request.user)[0:5]
+    return render(request, "dashboard/dashboard.html", {"youtube_videos": youtubevideos, "webpage_summaries": webpage_summaries})
 
 
 @login_required
@@ -23,7 +25,8 @@ def summarize_youtube_video(request):
         except:
             (response, youtube_summary_id) = load_youtube_video(videolink, request.user)
             return redirect(f"/dashboard/summary/youtube/{youtube_summary_id}")
-    return render(request, "dashboard/products/summarize_youtube_video.html")
+    summaries = YoutubeVideoSummary.objects.filter(user=request.user)
+    return render(request, "dashboard/products/summarize_youtube_video.html", {"summaries": summaries})
 
 
 @login_required
@@ -36,7 +39,8 @@ def summarize_webpage(request):
         except:
             (response, webpage_summary_id) = load_web_page(webpage_link, request.user)
             return redirect(f"/dashboard/summary/webpage/{webpage_summary_id}")
-    return render(request, "dashboard/products/summarize_webpage.html")
+    summaries = WebpageSummary.objects.filter(user=request.user)
+    return render(request, "dashboard/products/summarize_webpage.html", {"summaries": summaries})
 
 
 @login_required
